@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AlfaLife</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="banner-nav">
+    <h2>LOGO HERE</h2>
+
+    <div class="navbar">
+      <ul>
+        <li><%= link_to 'Home', root_url %></li>
+        <li><%= link_to 'Ask a question', new_question_url %></li>
+        <li><%= link_to 'Request Plan', '' %></li>
+        <% if session[:current_user] == nil %>
+          <li><%= link_to 'Register', new_user_url %></li>
+          <li><%= link_to 'Log in', root_url + 'login' %></li>
+        <% else %>
+          <li><%= link_to 'Log out', root_url + 'logout' %></li>
+        <% end %>
+      </ul>
+    </div> 
+  </div>
+  
+<%= yield %>
+
+</body>
+</html>
