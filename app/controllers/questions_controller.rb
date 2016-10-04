@@ -14,4 +14,12 @@ class QuestionsController < ApplicationController
             redirect_to new_question_url
         end
     end
+
+    def index
+        @questions = Question.all
+    end
+
+    def show
+        @question = Question.find(params[:id])
+    end
 end
