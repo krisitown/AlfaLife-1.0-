@@ -4,8 +4,8 @@ class QuestionsController < ApplicationController
     end
 
     def create
-        @question = Question.new(title: params[:title], 
-            content: params[:content], user_id: params[:current_user])
+        @question = Question.new(title: params[:question][:title], 
+            content: params[:question][:content], user_id: session[:current_user])
         if @question.save
             flash[:success] = "Question successfully added."
             redirect_to questions_url
