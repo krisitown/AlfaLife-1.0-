@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
 
+  post 'add_comment' => 'comments#create'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
