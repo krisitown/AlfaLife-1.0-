@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
     def create
-        login_check
+        #login_check
         @comment = Comment.new(content: params[:content], user_id: session[:current_user],
             comment_id: params[:comment_id], question_id: params[:question_id], article_id: params[:article_id])
         if @comment.save
@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
 
     private
         def login_check
-            if session[:current_user] = nil
+            if session[:current_user] == nil
+                flash[:danger] = "Please log in to post a comment"
                 redirect_to root_url
             end
         end
