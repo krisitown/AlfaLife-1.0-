@@ -4,7 +4,11 @@ class CommentsController < ApplicationController
         @comment = Comment.new(content: params[:content], user_id: session[:current_user],
             comment_id: params[:comment_id], question_id: params[:question_id], article_id: params[:article_id])
         if @comment.save
-            redirect_to root_url + 'questions/' + params[:question_id]
+            if params[:question_id] != nil
+                redirect_to root_url + 'questions/' + params[:question_id]
+            else
+                redirect_to root_url + 'articles/' + params[:article_id]
+            end
         else
             flash[:danger] = "An error occured while trying to submit a comment"
             redirect_to root_url + 'questions/' + params[:question_id]

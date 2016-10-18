@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017170754) do
+ActiveRecord::Schema.define(version: 20161018201352) do
+
+  create_table "articles", force: :cascade do |t|
+    t.text     "content"
+    t.string   "user_id"
+    t.string   "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -37,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161017170754) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "is_admin"
   end
 
 end
