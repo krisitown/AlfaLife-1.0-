@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
     end
 
     def create
+        admin_check
         @article = Article.new(article_params)
         if @article.save
             redirect_to @article
@@ -21,8 +22,21 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
     end
 
+    def delete
+        admin_check
+        @article = Article.find(params[:id]).destroy
+        redirect_to root_url
+    end
+
     private
         def article_params
             params.require(:article).permit(:title, :thumbnail, :content, :user_id)
+        end
+
+        def admin_check
+            if User.find(session[:current_user]).is_admin == false
+                redirect_to root_url
+                flash[:danger] = "You do not have access to this part of the web app."
+            end
         end
 end

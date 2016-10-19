@@ -21,6 +21,12 @@ class QuestionsController < ApplicationController
         @questions = Question.all
     end
 
+    def delete
+        admin_check
+        @question = Question.find(params[:id]).destroy
+        redirect_to questions_url
+    end
+
     def show
         @question = Question.find(params[:id])
         @comments = Comment.where(:question_id => params[:id])
@@ -31,6 +37,13 @@ class QuestionsController < ApplicationController
             if session[:current_user] == nil
                 flash[:danger] = "Please log in, or create an account, in order to post a question."
                 redirect_to root_url + '/login'
+            end
+        end
+
+        def admin_check
+            if User.find(session[:current_user]).is_admin == false
+                redirect_to root_url
+                flash[:danger] = "You do not have access to this part of the web app."
             end
         end
                 

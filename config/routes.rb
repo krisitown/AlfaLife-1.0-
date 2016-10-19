@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   resources :questions
   resources :articles
 
+  get 'articles/:id/delete' => 'articles#delete'
+  get 'questions/:id/delete' => 'questions#delete'
+  get 'comments/:id/delete' => 'comments#delete'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'

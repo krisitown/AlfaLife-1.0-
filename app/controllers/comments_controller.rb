@@ -15,11 +15,24 @@ class CommentsController < ApplicationController
         end
     end
 
+    def delete
+        admin_check
+        @comment = Comment.find(params[:id]).destroy
+        redirect_to questions_url
+    end
+
     private
         def login_check
             if session[:current_user] == nil
                 flash[:danger] = "Please log in to post a comment"
                 redirect_to root_url
+            end
+        end
+
+        def admin_check
+            if User.find(session[:current_user]).is_admin == false
+                redirect_to root_url
+                flash[:danger] = "You do not have access to this part of the web app."
             end
         end
 end
