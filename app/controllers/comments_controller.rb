@@ -16,16 +16,16 @@ class CommentsController < ApplicationController
     end
 
     def upvote
-        CommentsPoint cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
-        if cp.save
-            Comment.find(params[:comment_id]).points++
+        @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
+        if @cp.save
+            Comment.find(params[:comment_id]).points += 1
         end
     end
 
     def downvote
-        CommentsPoint cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
-        if cp.save
-            Comment.find(params[:comment_id]).points--
+        @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
+        if @cp.save
+            Comment.find(params[:comment_id]).points -= 1
         end
     end
 

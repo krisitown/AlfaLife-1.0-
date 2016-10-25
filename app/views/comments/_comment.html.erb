@@ -1,5 +1,5 @@
 </br>
-<span id='upvote'>upvote</span>
+<button id='upvote<%= comment.id %>'>upvote</button>
 <span id='downvote'>downvote</span>
  <%= comment.content %>
 <% if session[:current_user] != nil %>
@@ -11,14 +11,15 @@
 
 <script>
     $(document).ready(function(){
-        $('#upvote').click(
+        $('#upvote<%= comment.id %>').click(function() {
+            alert('clicked');
             $.post(
             'upvote',
             {comment_id: <%= comment.id %>},
             function(returnedData){
-                $('#upvote').addClass('highlighted');    
-            }
-        ));
+                $('#upvote<%= comment.id %>').addClass('highlighted');    
+            })}
+        );
         $('#downvote').click();
     });
 </script>
