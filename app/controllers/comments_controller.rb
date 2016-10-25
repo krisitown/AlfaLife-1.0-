@@ -15,6 +15,20 @@ class CommentsController < ApplicationController
         end
     end
 
+    def upvote
+        CommentsPoint cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
+        if cp.save
+            Comment.find(params[:comment_id]).points++
+        end
+    end
+
+    def downvote
+        CommentsPoint cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
+        if cp.save
+            Comment.find(params[:comment_id]).points--
+        end
+    end
+
     def delete
         admin_check
         @comment = Comment.find(params[:id]).destroy

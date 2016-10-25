@@ -1,0 +1,5 @@
+class MakeComplexPk < ActiveRecord::Migration
+  def change
+	add_index :words, ["id", "language_id"], :unique => true
+  end
+end

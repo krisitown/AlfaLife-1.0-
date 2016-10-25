@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'articles/:id/delete' => 'articles#delete'
   get 'questions/:id/delete' => 'questions#delete'
   get 'comments/:id/delete' => 'comments#delete'
+  post 'questions/upvote' => 'comments#upvote'
+  post 'questions/downvote' => 'comments#downvote'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
