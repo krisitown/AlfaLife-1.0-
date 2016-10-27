@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
     def create
-        #login_check
+        login_check
         @comment = Comment.new(content: params[:content], user_id: session[:current_user],
-            comment_id: params[:comment_id], question_id: params[:question_id], article_id: params[:article_id])
+            comment_id: params[:comment_id], question_id: params[:question_id], article_id: params[:article_id], points: 0)
         if @comment.save
             if params[:question_id] != nil
                 redirect_to root_url + 'questions/' + params[:question_id]
@@ -16,16 +16,42 @@ class CommentsController < ApplicationController
     end
 
     def upvote
-        @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
-        if @cp.save
-            Comment.find(params[:comment_id]).points += 1
+        respond_to do |format|
+            @cp = CommentsPoint.where(:comment_id => params[:comment_id], user_id: session[:current_user]).first
+            if @cp != nil
+                @cp.vote = 'up'
+                @cp.save
+            else
+                @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id],
+                    vote: 'up')
+                @cp.save
+            end
+            points = CommentsPoint.where(:comment_id => params[:comment_id], :vote => 'up').size
+            points -= CommentsPoint.where(:comment_id => params[:comment_id], :vote => 'down').size
+            comment = Comment.find(params[:comment_id])
+            comment.points = points
+            comment.save
+            format.js { render nothing: true }
         end
     end
 
     def downvote
-        @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id])
-        if @cp.save
-            Comment.find(params[:comment_id]).points -= 1
+        respond_to do |format|
+            @cp = CommentsPoint.where(:comment_id => params[:comment_id], user_id: session[:current_user]).first
+            if @cp != nil
+                @cp.vote = 'down'
+                @cp.save
+            else
+                @cp = CommentsPoint.new(user_id: session[:current_user], comment_id: params[:comment_id],
+                    vote: 'down')
+                @cp.save
+            end
+            points = CommentsPoint.where(:comment_id => params[:comment_id], :vote => 'up').size
+            points -= CommentsPoint.where(:comment_id => params[:comment_id], :vote => 'down').size
+            comment = Comment.find(params[:comment_id])
+            comment.points = points
+            comment.save
+            format.js { render nothing: true }
         end
     end
 
