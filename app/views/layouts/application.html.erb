@@ -20,6 +20,9 @@
           <li><%= link_to 'Register', new_user_url %></li>
           <li><%= link_to 'Log in', root_url + 'login' %></li>
         <% else %>
+          <% if User.find(session[:current_user]).is_admin %>
+            <li><%= link_to 'Create Article', new_article_path %>
+          <% end %>
           <li><%= link_to 'Log out', root_url + 'logout' %></li>
         <% end %>
       </ul>
