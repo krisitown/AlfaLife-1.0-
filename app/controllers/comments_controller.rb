@@ -42,6 +42,7 @@ class CommentsController < ApplicationController
             comment = Comment.find(params[:comment_id])
             comment.points = points
             comment.save
+            calc_points_for(Comment.find(params[:comment_id]).user_id)
             format.js { render nothing: true }
         end
     end
@@ -62,6 +63,7 @@ class CommentsController < ApplicationController
             comment = Comment.find(params[:comment_id])
             comment.points = points
             comment.save
+            calc_points_for(Comment.find(params[:comment_id]).user_id)
             format.js { render nothing: true }
         end
     end
@@ -111,5 +113,15 @@ class CommentsController < ApplicationController
             else 
                 Question.find(comment.question_id)
             end
+        end
+
+        def calc_points_for(user_id)
+            user = User.find(user_id)
+            points = 0
+            Comment.where(user_id).each do |comment|
+                points += comment.points
+            end
+            user.points = points
+            user.save
         end
 end
