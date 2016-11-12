@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users
   resources :questions
   resources :articles
+  resources :messages
 
   get 'articles/:id/delete' => 'articles#delete'
   get 'questions/:id/delete' => 'questions#delete'

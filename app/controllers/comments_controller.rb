@@ -5,7 +5,16 @@ class CommentsController < ApplicationController
             comment_id: params[:comment_id], question_id: params[:question_id], article_id: params[:article_id], points: 0)
         if @comment.save
             if params[:question_id] != nil
+                @message = Message.new(title: User.find(session[:current_user]).name + " has replied to your question!",
+                    content: "You can view the reply " + '<a href=' +  root_url + 'questions/' + params[:question_id] + '>here</a>',
+                    to_id: question_owner())
+                @message.save
                 redirect_to root_url + 'questions/' + params[:question_id]
+            elsif params[:comment_id] != nil
+                @message = Message.new(title: User.find(session[:current_user]).name + " has replied to your comment!",
+                    content: "You can view the reply " + link_to('here', questions_url(find_origin_question)),
+                    to_id: comment_owner)
+                @message.save
             else
                 redirect_to root_url + 'articles/' + params[:article_id]
             end
@@ -74,5 +83,21 @@ class CommentsController < ApplicationController
                 redirect_to root_url
                 flash[:danger] = "You do not have access to this part of the web app."
             end
+        end
+
+        def question_owner
+            User.find(Question.find(params[:question_id]).user_id).id
+        end
+
+        def comment_owner
+            Comment.find(Question.find(params[:comment_id]).user_id)
+        end
+
+        def find_origin_question
+            comment = Comment.find(params[:comment_id])
+            while comment.question_id == nil do
+                origin_comment = Comment.find(comment.comment_id)
+            end
+            Question.find(origin_comment.question_id)
         end
 end

@@ -1,0 +1,12 @@
+<div>
+    From: 
+    <% if message.from_id != nil %>
+        <%= link_to User.find(message.from_id).name, root_url + 'users/' + message.from_id.to_s %>
+    <% else %>
+        System
+    <% end %>
+    <h4> <%= message.title %> </h4>
+    <div>
+        <%= message.content.html_safe %>
+    </div>
+</div>
