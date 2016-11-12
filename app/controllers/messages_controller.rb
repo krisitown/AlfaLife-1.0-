@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     end
 
     def index 
-        @messages = Message.where(:to_id => session[:current_user])
+        @messages = Message.where(:to_id => session[:current_user]).sort_by({|msg|, msg.created_at})
         @messages.each do |msg|
             msg.read = true
         end

@@ -1,3 +1,4 @@
+<div id=comment<%= comment.id %>>
 </br>
 <button id='upvote<%= comment.id %>'>upvote</button>
 <button id='downvote<%= comment.id %>'>downvote</button>
@@ -5,11 +6,16 @@
  <%= comment.created_at %>
  </br><%= comment.content %>
 <% if session[:current_user] != nil %>
+        <button id='add_comment<%= comment.id %>'>Reply</button>
         <% if User.find(session[:current_user]).is_admin %>
             <%= link_to '[delete]', root_url + 'comments/' + comment.id.to_s + '/delete' %>
         <% end %>
     <% end %>
 
+    <% Comment.where(:comment_id => comment.id).each do |reply| %>
+        <%= render reply %>
+    <% end %> 
+</div>
 
 <script>
     $(document).ready(function(){
@@ -29,5 +35,21 @@
                    
             })}
         );
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#add_comment<%= comment.id %>').click(function() {
+            $('#comment<%= comment.id %>').append(
+                "<form method=POST action='<%= root_url + 'add_comment' %>'>" +
+                    "<input type='text_area' name='content' value='Add comment'></br>" +
+                    "<input type='hidden' name='comment_id' value='<%= comment.id %>'>" +
+                    "<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>" +
+                    "<input type='submit' value='Add comment'>" +
+                "</form>"         
+            );
+            $('#add_comment').remove();}
+        )
     });
 </script>
