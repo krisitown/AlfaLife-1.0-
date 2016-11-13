@@ -1,5 +1,16 @@
-<h2>Questions:</h2>
+<div class="row">
+<div class="col-sm-12 col-md-6">
+<h3> No one has asked what you want to know? <br>
+Ask it right away! </h3>
+<%= button_to 'Ask a question', new_question_url, :class => "btn btn-primary" %></li>
+</div>
+
+<div class="col-sm-12 col-md-6">
+<h3>Questions:</h3>
 
 <% @questions.each do |question| %>
     <%= render question %>
 <% end %>
+</div>
+
+</div>

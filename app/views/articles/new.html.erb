@@ -1,16 +1,28 @@
 <h2>Create an article</h2>
 
+<div class="container">
 <%= form_for @article do |f| %>
     <%= f.label :title %></br>
+    
+    <div class="row">
     <%= f.text_field :title %></br>
+    </div>
 
     <%= f.label :thumbnail %></br>
+
+    <div class="row">
     <%= f.text_field :thumbnail %></br>
+    </div>
 
     <%= f.label :content %></br>
+    
+    <div class="row">
     <%= f.text_area :content %></br>
+    </div>
 
     <input type="hidden" id="user_id" value="<%= session[:current_user] %>">
 
     <%= f.submit 'Submit' %>
 <% end %>
+
+</div>

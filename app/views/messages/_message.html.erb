@@ -1,4 +1,4 @@
-<div>
+<div class="row" style="margin: 2em; padding 2em;">
     From: 
     <% if message.from_id != nil %>
         <%= link_to User.find(message.from_id).name, root_url + 'users/' + message.from_id.to_s %>

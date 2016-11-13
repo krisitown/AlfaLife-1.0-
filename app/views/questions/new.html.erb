@@ -1,11 +1,17 @@
 <h2>Submit question:</h2>
 
 <%= form_for @question do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %></br>
+    <%= f.label :title %></br>
+    <div class="row">
+    <%= f.text_field :title, :class => 'col-md-10' %></br>
+    </div>
 
-    <%= f.label :content %>
-    <%= f.text_area :content %></br>
+    <%= f.label :content %></br>
+    <div class="row">
+    <%= f.text_area :content, :class => 'col-md-10', :id => 'content-box' %></br>
+    </div>
 
+    <div class="row">
     <%= f.submit 'Submit question' %>
+    </div>
 <% end %>

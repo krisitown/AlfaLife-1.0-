@@ -1,0 +1,35 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar ul {
+    background-color: dodgerblue;
+    list-style-type: none;
+    
+}
+
+#banner {
+    background-color: dodgerblue;
+}
+
+li a {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline;
+    
+}
+
+li {
+    text-align: center;
+    padding: 7px;
+    display: inline-block;
+}
+
+li a:hover {
+    text-decoration: none;
+}
+
+#content-box {
+    display: block;
+    height: 25em;
+}
