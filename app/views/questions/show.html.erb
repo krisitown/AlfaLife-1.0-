@@ -1,15 +1,18 @@
-<h2><%= @question.title %></h2>
+<h2 style="border-bottom: 1px solid black; display: inline;"><%= @question.title %></h2>
 
-<div>
+<div class="row">
+    <div class="question-text row">
     <p id='content'>
         <%= @question.content %>
-        <% @comments.each do |comment| %>
+    </p>
+
+    <% @comments.each do |comment| %>
             <%= render comment %>
         <% end %>
-    </p>
     <% if session[:current_user] != nil %>
         </br><button id='add_comment'>Add comment</button>
     <% end %>
+</div>
 </div>
 
 <script>
@@ -17,7 +20,7 @@
         $('#add_comment').click(function() {
             $('#content').append(
                 "<form method=POST action='<%= root_url + 'add_comment' %>'>" +
-                    "<input type='text_area' name='content' value='Add comment'></br>" +
+                    "<input style='height: 9em; width: 32em;' type='text_area' name='content' placeholder='Add comment'></br>" +
                     "<input type='hidden' name='question_id' value='<%= @question.id %>'>" +
                     "<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>" +
                     "<input type='submit' value='Add comment'>" +

@@ -4,4 +4,6 @@
     <% @messages.each do |message| %>
         <%= render message %>
     <% end %>
+
+    <%= will_paginate @messages %>
 </div>

@@ -1,9 +1,23 @@
+<div class="article">
+<div class="container">
 <div class="row">
-    <img class="col-md-2" src="<%= article.thumbnail %>" >
-    <a class="col-md-8" href="<%= root_url + "articles/" + article.id.to_s %>"<h4><%= article.title %></a>
+    <img class="article-thumb col-md-2" src="<%= article.thumbnail %>" >
+    <a class="article-name col-md-8" href="<%= root_url + "articles/" + article.id.to_s %>"<h4><%= article.title %></a>
+    <div class="article-teaser row">
+        <div class="col-md-3">
+        <p>
+            <% if article.content != nil %>
+                <%= article.content[0..140] + "..." %>
+                <a href="<%= root_url + "articles/" + article.id.to_s %>">Read more</a>
+            <% end %>
+        </p>
+        </div>
+    </div>
     <% if session[:current_user] != nil %>
         <% if User.find(session[:current_user]).is_admin %>
             <%= link_to '[delete]', root_url + 'articles/' + article.id.to_s + '/delete' %>
         <% end %>
     <% end %>
+</div>
+</div>
 </div>

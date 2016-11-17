@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     end
 
     def index 
-        @messages = Message.where(:to_id => session[:current_user]).order(:created_at => :desc)
+        @messages = Message.where(:to_id => session[:current_user]).order(:created_at => :desc).paginate(:page => params[:page], :per_page => 5)
         @messages.each do |msg|
             msg.read = true
         end

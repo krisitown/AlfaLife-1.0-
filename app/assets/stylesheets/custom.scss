@@ -37,3 +37,57 @@ li a:hover {
     display: block;
     height: 25em;
 }
+
+.article-name {
+    font-size: 2em;
+    color: black;
+}
+
+.article-name:hover {
+    text-decoration: none;
+}
+
+.article {
+    padding: 1em;
+    border-bottom: 1px solid black;
+    display: block;
+}
+
+.article-thumb {
+    height: 9em;
+    widows: 16em;
+}
+
+.article-teaser p {
+    color: gray;
+}
+
+.question a {
+
+}
+
+.question a:hover {
+    text-decoration: none;
+}
+
+.question {
+    padding: 0.5em;
+    display: block;
+    font-size: 2em;
+    border-left: 1px solid black;
+}
+
+.question-text {
+    padding: 1.5em;
+}
+
+.comment-content {
+    font-size: 1.1em;
+    padding: 0.4em;
+}
+
+.comment {
+    border: 1px solid black;
+    padding: 0.4em;
+    width: 100%;
+}

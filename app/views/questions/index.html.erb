@@ -11,6 +11,8 @@ Ask it right away! </h3>
 <% @questions.each do |question| %>
     <%= render question %>
 <% end %>
+
+<% will_paginate @questions %>
 </div>
 
 </div>
