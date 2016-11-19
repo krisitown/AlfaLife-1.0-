@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :articles
   resources :messages
+  resources :plan_requests
 
   get 'articles/:id/delete' => 'articles#delete'
   get 'questions/:id/delete' => 'questions#delete'

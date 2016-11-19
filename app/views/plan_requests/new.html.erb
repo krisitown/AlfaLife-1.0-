@@ -1,0 +1,32 @@
+<h2>Request plan:</h2>
+
+<%= form_for @plan_request do |f| %>
+    <%= f.label :age %></br>
+    <%= f.text_field :age %></br></br>
+
+    <label for="unit of measurement"> What unit measurement system are you using: </label></br>
+    <input type="radio" name="plan_request[unit]" value="metric">Metric (kg, cm)</br>
+    <input type="radio" name="plan_request[unit]" value="imperial">Imperial (pounds, inches)</br></br>
+
+    <%= f.label :weight %></br>
+    <%= f.text_field :weight %></br></br>
+
+    <%= f.label :height %></br>
+    <%= f.text_field :height %></br></br>
+
+    <label for="Gender"> Gender: </label></br>
+    <input type="radio" name="plan_request[gender]" value="male"> Male<br>
+    <input type="radio" name="plan_request[gender]" value="female"> Female<br></br>
+
+    <label for="Want to">Want to:</label> </br>
+    <input type="radio" name="plan_request[want_to]" value="cut"> Cut </br>
+    <input type="radio" name="plan_request[want_to]" value="bulk"> Bulk up </br>
+    <input type="radio" name="plan_request[want_to]" value="mantain"> Mantain </br></br>
+
+    <input type="hidden" name="plan_request[user_id]" value="<%= session[:current_user] %>">
+
+    <%= f.label :comments %></br>
+    <%= f.text_area :comments %></br>
+
+    <%= f.submit 'Submit' %>
+<% end %>

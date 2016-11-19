@@ -1,0 +1,6 @@
+<h2>Plan Requests:</h2>
+<% @plan_requests.each do |plan_request| %>
+    <%= render plan_request %>
+<% end %>
+
+<%= will_paginate @plan_requests %>
