@@ -73,8 +73,12 @@ li a:hover {
 .question {
     padding: 0.5em;
     display: block;
-    font-size: 2em;
+    font-size: 1em;
     border-left: 1px solid black;
+}
+
+.question p {
+    text-align: right;
 }
 
 .question-text {
@@ -90,4 +94,19 @@ li a:hover {
     border: 1px solid black;
     padding: 0.4em;
     width: 100%;
+}
+
+.video_show {
+    padding-top: 2em;
+    padding-bottom: 4em;
+    text-align: center;
+}
+
+.article_title {
+    padding: 1em;
+}
+
+.article_content {
+    font-size: 1.4em;
+    padding: 1em;
 }
