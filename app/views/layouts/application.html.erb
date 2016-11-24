@@ -22,7 +22,7 @@
         <li class="col-md-2"><%= link_to 'Home', root_url %></li>
         <li class="col-md-2"><%= link_to 'Questions', questions_url %></li>
         <li class="col-md-2"><%= link_to 'Request Plan', new_plan_request_url %></li>
-        <li class="col-md-2"><%= link_to 'Videos', '' %></li>
+        <li class="col-md-2"><%= link_to 'Videos', videos_path %></li>
         <% if session[:current_user] == nil %>
           <li class="col-md-2"><%= link_to 'Register', new_user_url %></li>
           <li class="col-md-2"><%= link_to 'Log in', root_url + 'login' %></li>

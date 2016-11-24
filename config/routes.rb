@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   resources :articles
   resources :messages
   resources :plan_requests
+  resources :videos
+
+  get 'videos/show/:id' => 'videos#show'
+  get 'videos/:id/delete' => 'videos#delete'
+  get 'videos/:id/make_featured' => 'videos#make_featured'
+  get 'videos/category/:category' => 'videos#index'
 
   get 'articles/:id/delete' => 'articles#delete'
   get 'questions/:id/delete' => 'questions#delete'
