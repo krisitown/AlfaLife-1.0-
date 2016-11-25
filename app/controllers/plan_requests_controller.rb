@@ -13,7 +13,7 @@ class PlanRequestsController < ApplicationController
             redirect_to root_url
         else 
             flash[:danger] = "An error occured whilst trying to request plan, please check the information you sent and try again."
-            redirect_to root_url
+            render 'new'
         end
     end
 

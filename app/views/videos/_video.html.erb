@@ -2,8 +2,10 @@
 <div class="col-xs-12 col-sm-12 col-md-4">
     <img src="<%= video.thumbnail %>" />
     <h4><%= video.title %></h4>
-    <% if User.find(session[:current_user]).is_admin %>
-        <%= link_to '[X]', 'videos/' + video.id.to_s + '/delete' %>
+    <% if session[:current_user] != nil %>
+        <% if User.find(session[:current_user]).is_admin %>
+            <%= link_to '[X]', 'videos/' + video.id.to_s + '/delete' %>
+        <% end %>
     <% end %>
 </div>
 </a>

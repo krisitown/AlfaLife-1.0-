@@ -1,17 +1,26 @@
 <h2>Submit question:</h2>
 
 <%= form_for @question do |f| %>
+
+    <% if @question.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-danger">
+			The form contains <%= pluralize(@question.errors.count, 
+			  "errors") %>
+		    <ul>
+			<% @question.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+        </div>
+	</div>
+    <% end %>
+
     <%= f.label :title %></br>
-    <div class="row">
-    <%= f.text_field :title, :class => 'col-md-10' %></br>
-    </div>
+    <%= f.text_field :title, :class => 'col-md-12' %></br>
 
     <%= f.label :content %></br>
-    <div class="row">
-    <%= f.text_area :content, :class => 'col-md-10', :id => 'content-box' %></br>
-    </div>
+    <%= f.text_area :content, :class => 'col-md-12', :id => 'content-box' %></br>
 
-    <div class="row">
     <%= f.submit 'Submit question' %>
-    </div>
 <% end %>

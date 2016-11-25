@@ -9,6 +9,7 @@
     <% @comments.each do |comment| %>
             <%= render comment %>
         <% end %>
+    <%= will_paginate @comments %>
     <% if session[:current_user] != nil %>
         </br><button id='add_comment'>Add comment</button>
     <% end %>

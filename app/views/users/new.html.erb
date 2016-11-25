@@ -5,6 +5,21 @@
 <h2>Create new account:</h2>
 
 <%= form_for @user do |f| %>
+
+    <% if @user.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-danger">
+			The form contains <%= pluralize(@user.errors.count, 
+			  "errors") %>
+		    <ul>
+			<% @user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+        </div>
+	</div>
+    <% end %>
+
     <%= f.label :name %></br>
     <%= f.text_field :name %></br>
 

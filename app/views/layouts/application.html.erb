@@ -38,14 +38,26 @@
   </div>
   
 
-  <div>
-    <%= flash[:success] %>
-    <%= flash[:danger] %>
-  </div>
-  <div class="col-md-12">
+  <div class="col-md-12 main-box">
+    <div class="alert-success">
+      <%= flash[:success] %>
+    </div>
+    <div class="alert-danger">
+      <%= flash[:danger] %>
+    </div>
+    
     <%= yield %>
+  
   </div>
 </div>
 </div>
+
+<footer class="col-xs-12 col-sm-12 col-md-12">
+  <section class="footer-body">
+    <small>
+      Contact us at: alfalife@gmail.com
+    </small>
+  </section>
+</footer>
 </body>
 </html>

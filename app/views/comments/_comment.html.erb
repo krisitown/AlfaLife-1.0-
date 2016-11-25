@@ -3,6 +3,7 @@
     <button id='upvote<%= comment.id %>'>upvote</button>
     <button id='downvote<%= comment.id %>'>downvote</button>
     <%= link_to User.find(comment.user_id).name, root_url + 'users/' + comment.user_id.to_s %>
+    <%= comment.points.to_s + ' points' %>
     <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: true) + " ago" %>
     </br>
     <div class="comment-content" >
@@ -15,9 +16,11 @@
             <% end %>
         <% end %>
 
-        <% Comment.where(:comment_id => comment.id).each do |reply| %>
+        <% @replies = Comment.where(:comment_id => comment.id) %>
+        <% @replies.each do |reply| %>
             <%= render reply %>
         <% end %> 
+
     </div>
 
     <script>

@@ -1,10 +1,10 @@
 <h2> Videos </h2>
 
-<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-    <%= link_to 'New', root_url + 'videos/category/new' %></br>
-    <%= link_to 'Most Viewed', root_url + 'videos/category/most_viewed' %></br>
-    <%= link_to 'Hot', root_url + 'videos/category/hot' %></br>
-    <%= link_to 'Featured', root_url + 'videos/category/featured' %></br> 
+<div class="col-xs-12 col-sm-12 col-md-3 sidebar btn-group-vertical">
+    <%= link_to 'New', root_url + 'videos/category/new', :class => "btn btn-info" %></br>
+    <%= link_to 'Most Viewed', root_url + 'videos/category/most_viewed', :class => "btn btn-info" %></br>
+    <%= link_to 'Hot', root_url + 'videos/category/hot', :class => "btn btn-info" %></br>
+    <%= link_to 'Featured', root_url + 'videos/category/featured', :class => "btn btn-info" %></br> 
     </br>
     <%= link_to 'Submit Video', new_video_path, :class => "btn btn-primary", :method => 'get' %></br>
 </div>

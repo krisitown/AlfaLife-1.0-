@@ -1,6 +1,21 @@
 <h2>Request plan:</h2>
 
 <%= form_for @plan_request do |f| %>
+
+    <% if @plan_request.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-danger">
+			The form contains <%= pluralize(@plan_request.errors.count, 
+			  "errors") %>
+		    <ul>
+			<% @plan_request.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+        </div>
+	</div>
+    <% end %>
+
     <%= f.label :age %></br>
     <%= f.text_field :age %></br></br>
 
@@ -21,7 +36,7 @@
     <label for="Want to">Want to:</label> </br>
     <input type="radio" name="plan_request[want_to]" value="cut"> Cut </br>
     <input type="radio" name="plan_request[want_to]" value="bulk"> Bulk up </br>
-    <input type="radio" name="plan_request[want_to]" value="mantain"> Mantain </br></br>
+    <input type="radio" name="plan_request[want_to]" value="mantain"> Maintain </br></br>
 
     <input type="hidden" name="plan_request[user_id]" value="<%= session[:current_user] %>">
 

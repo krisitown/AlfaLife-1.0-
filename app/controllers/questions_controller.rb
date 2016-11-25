@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
             redirect_to questions_url
         else
             flash[:danger] = "An error occured whilst trying to add your question please try again"
-            redirect_to new_question_url
+            render 'new'
         end
     end
 
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
     def show
         @question = Question.find(params[:id])
-        @comments = Comment.where(:question_id => params[:id])
+        @comments = Comment.where(:question_id => params[:id]).paginate(:page => params[:page], :per_page => 5)
     end
 
     private
