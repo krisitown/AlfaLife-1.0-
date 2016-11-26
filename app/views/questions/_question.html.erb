@@ -1,6 +1,6 @@
 <div class="question row">
 <div class="col-md-12">
-<h3><%= link_to question.title, root_url + 'questions/' + question.id.to_s %></h3>
+<h3><%= link_to question.title, root_url + 'questions/' + question.id.to_s, :class => 'question-partial' %></h3>
     <p>
     <!--<%= Comment.where(:question_id => question.id).count.to_s + ' comments' %></br> _-->
     <%= count_comments_in_question(question).to_s + ' comments' %></br>
