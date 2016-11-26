@@ -16,22 +16,22 @@
 
     <div class="navbar">
       <div class="row">
-      <%= image_tag "banner-dumbbell", :class => "col-sm-12", :id => "banner" %>
+      <%= image_tag "banner-with-text", :class => "col-sm-12", :id => "banner" %>
       </div>
-      <ul class="row">
-        <li class="col-md-2"><%= link_to 'Home', root_url %></li>
-        <li class="col-md-2"><%= link_to 'Questions', questions_url %></li>
-        <li class="col-md-2"><%= link_to 'Request Plan', new_plan_request_url %></li>
-        <li class="col-md-2"><%= link_to 'Videos', videos_path %></li>
+      <ul class="row navigation-bar">
+        <li class="col-md-2 navbar-button"><%= link_to 'HOME', root_url %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'QUESTIONS', questions_url  %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'PLANS', new_plan_request_url  %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'VIDEOS', videos_path %></li>
         <% if session[:current_user] == nil %>
-          <li class="col-md-2"><%= link_to 'Register', new_user_url %></li>
-          <li class="col-md-2"><%= link_to 'Log in', root_url + 'login' %></li>
+          <li class="col-md-2 navbar-button"><%= link_to 'REGISTER', new_user_url  %></li>
+          <li class="col-md-2 navbar-button"><%= link_to 'LOG IN', root_url + 'login' %></li>
         <% else %>
           <% if User.find(session[:current_user]).is_admin %>
-            <li class="col-md-2"><%= link_to 'Create Article', new_article_path %>
+            <li class="col-md-2 navbar-button"><%= link_to 'CREATE ARTICLE', new_article_path %>
           <% end %>
-          <li class="col-md-2"><%= link_to 'Inbox', messages_path %>
-          <li class="col-md-2"><%= link_to 'Log out', root_url + 'logout' %></li>
+          <li class="col-md-2 navbar-button"><%= link_to 'INBOX', messages_path %>
+          <li class="col-md-2 navbar-button"><%= link_to 'LOG OUT', root_url + 'logout' %></li>
         <% end %>
       </ul>
     </div> 
@@ -61,3 +61,20 @@
 </footer>
 </body>
 </html>
+
+
+<script>
+  $(document).ready(new function(){
+    $('.navbar-button').hover(
+      
+      function() {
+      $(this).css('background', 'white');
+      $(this).children().css('color', 'black');
+    }, 
+    
+      function(){
+        $(this).css('background', 'black');
+        $(this).children().css('color', 'white');
+    });
+  });
+</script>
