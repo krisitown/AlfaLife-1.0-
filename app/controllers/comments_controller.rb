@@ -7,14 +7,14 @@ class CommentsController < ApplicationController
             if params[:question_id] != nil
                 @message = Message.new(title: User.find(session[:current_user]).name + " has replied to your question!",
                     content: "You can view the reply " + '<a href=' +  root_url + 'questions/' + params[:question_id] + '>here</a>',
-                    to_id: question_owner())
+                    to_id: question_owner(), read: false)
                 @message.save
                 redirect_to root_url + 'questions/' + params[:question_id]
             elsif params[:comment_id] != nil
                 @message = Message.new(title: User.find(session[:current_user]).name + " has replied to your comment!",
                     content: "You can view the reply " + '<a href=' +  root_url + 'questions/' + find_origin_question().id.to_s + '>here</a>' +
                     " </br> \"" + @comment.content + "\" ",
-                    to_id: comment_owner)
+                    to_id: comment_owner, read: false)
                 @message.save
                 redirect_to root_url + 'questions/' + find_origin_question().id.to_s
             else

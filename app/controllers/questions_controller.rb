@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     end
 
     def index
-        @questions = Question.paginate(:page => params[:page], :per_page => 5)
+        @questions = Question.paginate(:page => params[:page], :per_page => 10)
     end
 
     def delete

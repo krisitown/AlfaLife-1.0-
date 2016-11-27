@@ -19,19 +19,24 @@
       <%= image_tag "banner-with-text", :class => "col-sm-12", :id => "banner" %>
       </div>
       <ul class="row navigation-bar">
-        <li class="col-md-2 navbar-button"><%= link_to 'HOME', root_url %></li>
-        <li class="col-md-2 navbar-button"><%= link_to 'QUESTIONS', questions_url  %></li>
-        <li class="col-md-2 navbar-button"><%= link_to 'PLANS', new_plan_request_url  %></li>
-        <li class="col-md-2 navbar-button"><%= link_to 'VIDEOS', videos_path %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'HOME', root_url, :class => 'navbar-link' %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'QUESTIONS', questions_url, :class => 'navbar-link'  %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'PLANS', new_plan_request_url, :class => 'navbar-link'  %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'VIDEOS', videos_path, :class => 'navbar-link' %></li>
         <% if session[:current_user] == nil %>
-          <li class="col-md-2 navbar-button"><%= link_to 'REGISTER', new_user_url  %></li>
-          <li class="col-md-2 navbar-button"><%= link_to 'LOG IN', root_url + 'login' %></li>
+          <li class="col-md-2 navbar-button"><%= link_to 'REGISTER', new_user_url, :class => 'navbar-link'  %></li>
+          <li class="col-md-2 navbar-button"><%= link_to 'LOG IN', root_url + 'login', :class => 'navbar-link' %></li>
         <% else %>
           <% if User.find(session[:current_user]).is_admin %>
-            <li class="col-md-2 navbar-button"><%= link_to 'CREATE ARTICLE', new_article_path %>
+            <li class="col-md-2 navbar-button"><%= link_to 'CREATE ARTICLE', new_article_path, :class => 'navbar-link' %>
           <% end %>
-          <li class="col-md-2 navbar-button"><%= link_to 'INBOX', messages_path %>
-          <li class="col-md-2 navbar-button"><%= link_to 'LOG OUT', root_url + 'logout' %></li>
+          <% unread_messages = Message.where(:to_id => session[:current_user]).where(:read => false).count %>
+          <% if unread_messages == 0 %>
+            <li class="col-md-2 navbar-button"><%= link_to 'INBOX', messages_path, :class => 'navbar-link' %>
+          <% elsif %>
+            <li class="col-md-2 navbar-button"><%= link_to 'INBOX(' + unread_messages.to_s + ')', messages_path, :class => 'navbar-link' %>
+          <% end %>
+          <li class="col-md-2 navbar-button"><%= link_to 'LOG OUT', root_url + 'logout', :class => 'navbar-link' %></li>
         <% end %>
       </ul>
     </div> 
