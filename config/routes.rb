@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   resources :messages
   resources :plan_requests
   resources :videos
+  resources :plans
 
+  get 'plans/new/:to_user/:request_id' => 'plans#new'
   get 'videos/show/:id' => 'videos#show'
   get 'videos/:id/delete' => 'videos#delete'
   get 'videos/:id/make_featured' => 'videos#make_featured'

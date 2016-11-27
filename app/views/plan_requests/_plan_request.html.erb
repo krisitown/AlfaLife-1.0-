@@ -1,0 +1,12 @@
+<div class="col-12 request">
+    Name: <%= User.find(plan_request.user_id).name %> </br>
+    Age: <%= plan_request.age %> </br>
+    Unit: <%= plan_request.unit %> </br>
+    Weight: <%= plan_request.weight %> </br>
+    Height: <%= plan_request.height %> </br>
+    Gender: <%= plan_request.gender %> </br>
+    Want to: <%= plan_request.want_to %> </br>
+    Additional Comments: <%= plan_request.comments %> </br>
+
+    <%= button_to 'Reply', new_plan_path + '/' + plan_request.user_id.to_s + '/' + plan_request.id.to_s, :method => 'get' %>
+</div>

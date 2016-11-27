@@ -29,6 +29,7 @@
         <% else %>
           <% if User.find(session[:current_user]).is_admin %>
             <li class="col-md-2 navbar-button"><%= link_to 'CREATE ARTICLE', new_article_path, :class => 'navbar-link' %>
+            <li class="col-md-2 navbar-button"><%= link_to 'REQUESTS', plan_requests_path, :class => 'navbar-link' %>
           <% end %>
           <% unread_messages = Message.where(:to_id => session[:current_user]).where(:read => false).count %>
           <% if unread_messages == 0 %>

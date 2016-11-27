@@ -1,8 +1,5 @@
 class PlanRequest < ActiveRecord::Base
     validates :gender, presence: true
-    validates :age, presence: true
-    validates :weight, presence: true
-    validates :height, presence: true
     validates :want_to, presence: true
     validates :unit, presence: true
     validates :user_id, presence: true
@@ -16,7 +13,7 @@ class PlanRequest < ActiveRecord::Base
     end
 
     def weight_validation
-        if weight.present? && (weigth < 20 || weight > 400)
+        if weight.present? && (weight < 10 || weight > 400)
             errors.add(:weight, "is invalid.")
         end
     end

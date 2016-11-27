@@ -20,6 +20,7 @@ class PlanRequestsController < ApplicationController
     def index
         admin_check
         @plan_requests = PlanRequest.all().order(:created_at => :desc).paginate(:page => params[:page], :per_page => 5)
+        @plan = Plan.new
     end
 
     private
