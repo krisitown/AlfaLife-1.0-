@@ -1,0 +1,14 @@
+<div class="col-sm-12 col-md-6">
+<h2> Pay for a personal plan, created from our experts to suit your needs! </h2>
+<%= button_to 'REQUEST PLAN', new_plan_request_path, :class => "btn btn-primary", :method => 'get' %></li>
+</div>
+
+<div class="col-sm-12 col-md-6">
+<h2>Your Plans:</h2>
+
+<% @plans.each do |plan| %>
+    <%= render plan %>
+<% end %>
+
+<%= will_paginate @plans %>
+</div>

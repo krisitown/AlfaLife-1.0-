@@ -15,6 +15,9 @@
 	</div>
     <% end %>
         <input type="hidden" name="to_user" value="<%= params[:to_user] %>">
+		
+		<%= f.label :title %>
+		<%= f.text_field :title %>
 
         <%= f.label :content %></br>
         <%= f.cktext_area :content, :class => 'col-md-12', :id => 'content-box' %></br>
