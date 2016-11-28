@@ -69,6 +69,7 @@ li a:hover {
 
 .article-teaser p {
     color: gray;
+    text-align: justify;
 }
 
 .question a {
@@ -156,6 +157,7 @@ input {
 
 h2 {
     padding-bottom: 1.3em;
+    font-size: 2.5em;
     font-family: 'Libre Franklin';
 }
 
@@ -195,10 +197,6 @@ p {
     font-family: 'Libre Franklin';
 }
 
-.question-partial:hover {
-    color: darkslategray;
-}
-
 .btn {
     font-family: 'Patua One';
     text-align: left;
@@ -223,4 +221,39 @@ label {
 .request {
     padding: 1.5em;
     border: 1px solid black;
+}
+
+.article_index {
+    font-size: 1.5em;
+}
+
+.question-box {
+        transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+    -moz-transition: background 0.25s linear;
+}
+
+.plan-box {
+    font-size: 1.6em;
+    font-family: 'Libre Franklin';
+    padding: 1.3em;
+    border: 1px solid black;
+
+        transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+    -moz-transition: background 0.25s linear;
+}
+
+.plan-link {
+    color: black;
+    text-decoration: none;
+}
+
+.plan-link:hover {
+    text-decoration: none;
+}
+
+#content {
+    padding: 1.5em;
+    text-align: justify;
 }

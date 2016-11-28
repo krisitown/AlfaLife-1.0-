@@ -1,6 +1,7 @@
 <div class="question row">
-<div class="col-md-12">
-<h3><%= link_to question.title, root_url + 'questions/' + question.id.to_s, :class => 'question-partial' %></h3>
+<a class="question-partial" href="<%= root_url + 'questions/' + question.id.to_s %>">
+<div class="col-md-12 question-box">
+<h3><%= question.title %></h3>
     <p>
     <!--<%= Comment.where(:question_id => question.id).count.to_s + ' comments' %></br> _-->
     <%= count_comments_in_question(question).to_s + ' comments' %></br>
@@ -11,4 +12,24 @@
         <% end %>
     <% end %>
 </div>
+</a>
 </div>
+
+
+<script>
+  $(document).ready(new function(){
+    $('.question-box').hover(
+      
+      function() {
+      $(this).css('background', 'black');
+      $(this).children().css('color', 'white');
+      $(this).children().children().css('color', 'white');
+    }, 
+    
+      function(){
+        $(this).css('background', 'white');
+        $(this).children().css('color', 'black');
+        $(this).children().children().css('color', 'black');
+    });
+  });
+</script>

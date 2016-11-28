@@ -1,10 +1,13 @@
-<h2><%= @question.title %></h2>
+
 
 <div class="row">
     <div class="question-text row">
-    <p id='content'>
-        <%= @question.content.html_safe %>
-    </p>
+    <div class="panel panel-default">
+        <h2 class="panel-heading"><%= @question.title %></h2>
+        <p class="panel-content question_content" id='content'>
+            <%= @question.content.html_safe %>
+        </p>
+    </div>
 
     <% @comments.each do |comment| %>
             <%= render comment %>

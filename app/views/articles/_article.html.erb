@@ -1,10 +1,10 @@
 <div class="article">
 <div class="container">
 <div class="row">
-    <img class="article-thumb col-md-2" src="<%= article.thumbnail %>" >
-    <a class="article-name col-md-8" href="<%= root_url + "articles/" + article.id.to_s %>"<h4><%= article.title %></a>
+    <img class="article-thumb col-md-3 img-responsive" src="<%= article.thumbnail %>" >
+    <a class="article-name col-md-6" href="<%= root_url + "articles/" + article.id.to_s %>"<h4><%= article.title %></a>
     <div class="article-teaser row">
-        <div class="col-md-3">
+        <div class="col-md-6">
         <p>
             <% if article.content != nil %>
                 <%= article.content[0..140] + "..." %>
