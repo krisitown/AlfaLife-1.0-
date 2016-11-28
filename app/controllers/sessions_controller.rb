@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         elsif @user == nil
             @user = User.new(email: auth_hash[:info][:email], name: auth_hash[:info][:name], password: auth_hash[:uid], password_confirmation: auth_hash[:uid])
             if @user.save
-                session[:current_user] == @user.id
+                session[:current_user] = @user.id
                 flash[:success] = "Successfully logged in."
                 redirect_to root_url
             else
