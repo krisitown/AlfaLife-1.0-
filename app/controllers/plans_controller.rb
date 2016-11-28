@@ -33,7 +33,7 @@ class PlansController < ApplicationController
     private
         def log_in_check
             if session[:current_user] == nil
-                flash[:danger] = "Please log in to post a comment"
+                flash[:danger] = "Please log in to enter this page"
                 redirect_to root_url
             end
         end

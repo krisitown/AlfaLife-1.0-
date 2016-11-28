@@ -96,7 +96,6 @@ li a:hover {
 }
 
 .comment-content {
-    font-size: 1.1em;
     padding: 0.4em;
 }
 
@@ -104,6 +103,7 @@ li a:hover {
     border: 1px solid black;
     padding: 0.4em;
     width: 100%;
+    font-size: 20px;
 }
 
 .video_show {
@@ -256,4 +256,5 @@ label {
 #content {
     padding: 1.5em;
     text-align: justify;
+    font-size: 1.5em;
 }
