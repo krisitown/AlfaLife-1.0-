@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
                 flash[:success] = "Successfully logged in."
                 redirect_to root_url
             else
-                flash[:danger] = "An error occured while trying to log you in, please try again."
+                flash[:danger] = "An error occured while trying to log you in, please try again.(1)"
                 redirect_to root_url + '/login'
             end
         else
