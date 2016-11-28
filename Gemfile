@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'activemerchant'
 
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
 
