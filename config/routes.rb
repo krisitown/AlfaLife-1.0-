@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :videos
   resources :plans
 
+  get 'auth/:provider/callback' => 'sessions#social_auth'
+
   get 'make_payment' => 'plan_requests#make_payment'
   post 'send_payment' => 'plan_requests#send_payment' 
 

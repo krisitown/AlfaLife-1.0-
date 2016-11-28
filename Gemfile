@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'activemerchant'
 
+gem 'omniauth-google'
+
 gem 'will_paginate'
 
 gem 'ckeditor', github: 'galetahub/ckeditor'
