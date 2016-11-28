@@ -23,6 +23,43 @@ class PlanRequestsController < ApplicationController
         @plan = Plan.new
     end
 
+    def make_payment
+        log_in_check
+    end
+
+    def send_payment
+        log_in_check
+
+        credit_card = ActiveMerchant::Billing::CreditCard.new(
+            :first_name => params[:first_name],
+            :last_name => params[:last_name],
+            :number => params[:card_number],
+            :month => params[:month],
+            :year => params[:year],
+            :verification_value => params[:verification_number]
+        )
+
+        if credit_card.valid?
+            gateway = ActiveMerchant::Billing::PayflowGateway.new(
+                :login => 'LOG_IN_ID',
+                :password => 'PASSWORD'
+            )
+            response = gateway.purchase(1000, credit_card)
+            if response.success?
+                flash[:success] = "Payment was made, please wait for us to get back to you."
+                redirect_to plans_url
+            else
+                flash[:danger] = "An error occured while trying to make the payment, you will not be charged. Please try again."
+            end
+        else
+            flash[:danger] = "An error occured while trying to make the payment, you will not be charged. Please try again."
+            credit_card.errors.each do |err|
+                flash[:danger] += err.to_s
+            end
+        end
+        redirect_to plans_url
+    end
+
     private
         def plan_params
             params.require(:plan_request).permit(:gender, :age, :weight, :height, :comments, :want_to, :unit, :user_id)

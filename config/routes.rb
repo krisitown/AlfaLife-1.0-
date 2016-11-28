@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :videos
   resources :plans
 
+  get 'make_payment' => 'plan_requests#make_payment'
+  post 'send_payment' => 'plan_requests#send_payment' 
+
   get 'plans/new/:to_user/:request_id' => 'plans#new'
   get 'videos/show/:id' => 'videos#show'
   get 'videos/:id/delete' => 'videos#delete'

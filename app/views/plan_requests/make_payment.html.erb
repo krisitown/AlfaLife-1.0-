@@ -1,0 +1,22 @@
+Make payment:
+<form action="send_payment" method="POST">
+    <label>First name</label></br>
+    <input type="text_field" name="first_name"></br>
+    <label>Last name</label></br>
+    <input type="text_field" name="last_name"></br>
+
+    <label>Card number</label></br>
+    <input type="text_field" name="card_number"></br>
+
+    <label>Expiration Date</label>(Months are from 1 to 12)</br>
+    <input class="col-xs-1 col-sm-1 col-md-1" type="text_field" name="month" placeholder="MM">
+    <input class="col-xs-4 col-sm-4 col-md-4" type="text_field" name="year" placeholder="YYYY"></br></br>
+
+    <label>Verification code(CID, CVC2, CVV2)</label></br>
+    <input type="text_field" name="verification_number">
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <input class="btn-primary" type="submit" value="MAKE PAYMENT" >
+
+</form>

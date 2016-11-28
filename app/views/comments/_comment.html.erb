@@ -1,7 +1,9 @@
 <div class="comment">
     <div id=comment<%= comment.id %>>
-    <button id='upvote<%= comment.id %>'>upvote</button>
-    <button id='downvote<%= comment.id %>'>downvote</button>
+    <% if session[:current_user] != nil %>
+        <button id='upvote<%= comment.id %>'>upvote</button>
+        <button id='downvote<%= comment.id %>'>downvote</button>
+    <% end %>
     <%= link_to User.find(comment.user_id).name, root_url + 'users/' + comment.user_id.to_s %>
     <%= comment.points.to_s + ' points' %>
     <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: true) + " ago" %>
