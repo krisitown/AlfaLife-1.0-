@@ -14,7 +14,7 @@
 <div style="text-align: centered;">
     <h4>Don't have an account? You can create a new account <a href="/users/new">here.</a>
     Or log in using these:</h4>
-    <a href="/auth/facebook/">google_link</a>
+    <%= link_to 'google_auth', root_url + 'auth/google', :method => 'post' %>
 </div>
 </div>
 </div>
