@@ -19,7 +19,9 @@ gem "figaro"
 
 gem 'activemerchant'
 
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 gem 'will_paginate'
 

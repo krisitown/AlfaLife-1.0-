@@ -2,14 +2,19 @@ class PlanRequestsController < ApplicationController
 
     def new
         log_in_check
+        payment_check
         @plan_request = PlanRequest.new
     end
 
     def create
         log_in_check
+        payment_check
         @plan_request = PlanRequest.new(plan_params)
         if @plan_request.save
             flash[:success] = "Successfully sent plan request."
+            @user = User.find(session[:current_user])
+            @user.payments -= 1
+            @user.save
             redirect_to root_url
         else 
             flash[:danger] = "An error occured whilst trying to request plan, please check the information you sent and try again."
@@ -47,7 +52,10 @@ class PlanRequestsController < ApplicationController
             response = gateway.purchase(1000, credit_card)
             if response.success?
                 flash[:success] = "Payment was made, please wait for us to get back to you."
-                redirect_to plans_url
+                @user = User.find(session[:current_user])
+                @user.payments += 1
+                @user.save
+                redirect_to new_plan_request_path
             else
                 flash[:danger] = "An error occured while trying to make the payment, you will not be charged. Please try again."
             end
@@ -76,6 +84,13 @@ class PlanRequestsController < ApplicationController
             if User.find(session[:current_user]).is_admin == false
                 redirect_to root_url
                 flash[:danger] = "You do not have access to this part of the web app."
+            end
+        end
+
+        def payment_check
+            if User.find(session[:current_user]).payments < 1
+                flash[:danger] = "You need to make a payment, before accessing this page."
+                redirect_to root_url + 'make_payment'
             end
         end
 end
