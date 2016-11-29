@@ -45,8 +45,10 @@ class VideosController < ApplicationController
 
     def make_featured
         admin_check
-        @video.Video.find(params[:id]).featured = true
+        @video = Video.find(params[:id])
+        @video.featured = true
         @video.save
+        redirect_to videos_path
     end
 
     private

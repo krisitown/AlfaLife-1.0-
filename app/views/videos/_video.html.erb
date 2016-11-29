@@ -5,6 +5,7 @@
     <% if session[:current_user] != nil %>
         <% if User.find(session[:current_user]).is_admin %>
             <%= link_to '[X]', 'videos/' + video.id.to_s + '/delete' %>
+            <%= link_to '[make_featured]', root_url + 'videos/' + video.id.to_s + '/make_featured' %>
         <% end %>
     <% end %>
 </div>
