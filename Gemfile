@@ -22,6 +22,7 @@ gem 'activemerchant'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-instagram'
 
 gem 'will_paginate'
 
