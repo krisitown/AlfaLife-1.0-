@@ -3,6 +3,37 @@
 <h2 class='col-md-8'><%= @article.title %></h2>
 </div>
 
+<div class='col-md-8'>
 <p class="col-xs-12 col-sm-12 col-md-10 article_content">
-    <%= @article.content %>
+    <%= @article.content.html_safe %>
 </p>
+</div>
+
+<div class='col-md-8'>
+<% @comments.each do |comment| %>
+            <%= render comment %>
+        <% end %>
+    <%= will_paginate @comments %>
+    <% if session[:current_user] != nil %>
+        </br><button id='add_comment'>Add comment</button>
+    <% end %>
+    <div id="new_comments">
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#add_comment').click(function() {
+            $('#new_comments').append(
+                "<form method=POST action='<%= root_url + 'add_comment' %>'>" +
+                    "<input style='height: 9em; width: 32em;' type='text_area' name='content' placeholder='Add comment'></br>" +
+                    "<input type='hidden' name='article_id' value='<%= @article.id %>'>" +
+                    "<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>" +
+                    "<input type='submit' value='Add comment'>" +
+                "</form>"         
+            );
+            $('#add_comment').remove();}
+        )
+    });
+</script>

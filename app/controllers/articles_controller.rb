@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
+        @comments = Comment.where(:article_id => @article.id).order("points DESC, created_at DESC").paginate(:page => params[:page], :per_page => 5)
     end
 
     def delete

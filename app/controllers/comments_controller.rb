@@ -10,19 +10,20 @@ class CommentsController < ApplicationController
                     to_id: question_owner(), read: false)
                 @message.save
                 redirect_to root_url + 'questions/' + params[:question_id]
-            elsif params[:comment_id] != nil
+            elsif params[:comment_id] != nil && find_origin_question() != nil
                 @message = Message.new(title: User.find(session[:current_user]).name + " has replied to your comment!",
                     content: "You can view the reply " + '<a href=' +  root_url + 'questions/' + find_origin_question().id.to_s + '>here</a>' +
                     " </br> \"" + @comment.content + "\" ",
                     to_id: comment_owner, read: false)
                 @message.save
+
                 redirect_to root_url + 'questions/' + find_origin_question().id.to_s
             else
-                redirect_to root_url + 'articles/' + params[:article_id]
+                redirect_to root_url + 'articles/' + find_origin_article().id.to_s
             end
         else
             flash[:danger] = "An error occured while trying to submit a comment"
-            redirect_to root_url + 'questions/' + params[:question_id]
+            redirect_to(:back)
         end
     end
 
@@ -97,9 +98,9 @@ class CommentsController < ApplicationController
             User.find(Comment.find(params[:comment_id]).user_id).id
         end
 
-        def find_origin_question
+        def find_origin_article
             comment = Comment.find(params[:comment_id])
-            while comment.question_id == nil do
+            while comment.question_id == nil && comment.article_id == nil do
                 origin_comment = Comment.find(comment.comment_id)
                 if origin_comment.question_id != nil
                     comment = origin_comment
@@ -108,9 +109,27 @@ class CommentsController < ApplicationController
                     comment = origin_comment
                 end
             end
-            if origin_comment != nil
+            if origin_comment.article_id != nil
+                Article.find(origin_comment.article_id)
+            elsif comment.article_id != nil
+                Article.find(comment.article_id)
+            end
+        end
+
+        def find_origin_question
+            comment = Comment.find(params[:comment_id])
+            while comment.question_id == nil && comment.article_id == nil do
+                origin_comment = Comment.find(comment.comment_id)
+                if origin_comment.question_id != nil
+                    comment = origin_comment
+                    break
+                else
+                    comment = origin_comment
+                end
+            end
+            if origin_comment != nil && origin_comment.question_id != nil
                 Question.find(origin_comment.question_id)
-            else 
+            elsif comment != nil && comment.question_id != nil
                 Question.find(comment.question_id)
             end
         end
