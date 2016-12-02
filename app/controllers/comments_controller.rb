@@ -19,7 +19,9 @@ class CommentsController < ApplicationController
 
                 redirect_to root_url + 'questions/' + find_origin_question().id.to_s
             else
-                redirect_to root_url + 'articles/' + find_origin_article().id.to_s
+                
+                    redirect_to root_url + 'articles/' + find_origin_article().id.to_s
+                
             end
         else
             flash[:danger] = "An error occured while trying to submit a comment"
@@ -100,6 +102,9 @@ class CommentsController < ApplicationController
 
         def find_origin_article
             if params[:comment_id] == nil
+                if params[:article_id] == nil
+                    return nil
+                end
                 return Article.find(params[:article_id])
             end
             comment = Comment.find(params[:comment_id])
