@@ -99,6 +99,9 @@ class CommentsController < ApplicationController
         end
 
         def find_origin_article
+            if params[:comment_id] == nil
+                return Article.find(params[:article_id])
+            end
             comment = Comment.find(params[:comment_id])
             while comment.question_id == nil && comment.article_id == nil do
                 origin_comment = Comment.find(comment.comment_id)
