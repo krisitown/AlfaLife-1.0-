@@ -1,5 +1,9 @@
 <h2>Inbox</h2>
 
+<% if @messages.count == 0 %>
+    <h4>Your inbox is empty. Get more active! </h4>
+<% end %>
+
 <div>
     <% @messages.each do |message| %>
         <%= render message %>

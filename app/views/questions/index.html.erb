@@ -1,11 +1,21 @@
 <div class="col-sm-12 col-md-6">
-<h2> No one has asked what you want to know? <br>
-Ask it right away! </h2>
-<%= button_to 'ASK QUESTION', new_question_url, :class => "btn btn-primary", :method => 'get' %></li>
+<h2> HAVE A QUESTION? WANT TO SHARE SOMETHING INTERESTING? THEN JUST GO AHEAD AND POST A START A NEW THREAD </h2>
+<%= button_to 'START A THREAD', new_question_url, :class => "btn btn-primary", :method => 'get' %></li>
 </div>
 
 <div class="col-sm-12 col-md-6">
-<h2>Questions:</h2>
+<h2>THREADS:</h2>
+
+<h4>Category:</h4>
+<form action='<%= root_url %>discussions/change_category' method='post' %>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <select id="category_select" name="category">
+        <option value="all"> All </option>
+        <option value="fitness"> Fitness </option>
+        <option value="health"> Health </option>
+        <option value="food"> Food </option>
+    </select>
+</form>
 
 <% @questions.each do |question| %>
     <%= render question %>
@@ -13,3 +23,21 @@ Ask it right away! </h2>
 
 <%= will_paginate @questions %>
 </div>
+
+
+<script>
+$(document).ready(function (){
+    var element = document.getElementById('category_select');
+    var category = "<%= @current_category %>";
+    
+    if(category == ""){
+        element.value = "all";
+    } else {
+        element.value = category;    
+    }
+    
+    $("#category_select").change(function() {
+       this.form.submit(); 
+    });
+});
+</script>

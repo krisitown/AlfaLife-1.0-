@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
     def create
         check_user
         @question = Question.new(title: params[:question][:title], 
-            content: params[:question][:content], user_id: session[:current_user])
+            content: params[:question][:content], category: params[:category], user_id: session[:current_user])
         if @question.save
             flash[:success] = "Question successfully added."
             redirect_to questions_url
@@ -30,6 +30,17 @@ class QuestionsController < ApplicationController
     def show
         @question = Question.find(params[:id])
         @comments = Comment.where(:question_id => params[:id]).order("points DESC, created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    end
+    
+    def change_category
+        category = params[:category]
+        if category == "all"
+            @questions = Question.order(:created_at => :desc).paginate(:page => params[:page], :per_page => 10)
+        else
+            @questions = Question.where(:category => category).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+        end
+        @current_category = category
+        render 'index'
     end
 
     private

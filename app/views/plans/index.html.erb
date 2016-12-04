@@ -6,6 +6,9 @@
 <div class="col-sm-12 col-md-6">
 <h2>Your Plans:</h2>
 
+<% if @plans.count == 0 %>
+    <h4> You do not have any plans </h4>
+<% end %>
 <% @plans.each do |plan| %>
     <%= render plan %>
 <% end %>

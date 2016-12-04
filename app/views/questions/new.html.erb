@@ -1,4 +1,4 @@
-<h2>Submit question:</h2>
+<h2>Submit thread:</h2>
 
 <%= form_for @question do |f| %>
 
@@ -18,9 +18,15 @@
 
     <%= f.label :title %></br>
     <%= f.text_field :title, :class => 'col-md-12' %></br>
+	
+	<select name="category">
+		<option value="fitness"> Fitness </option>
+		<option value="health"> Health </option>
+		<option value="food"> Food </option>
+	</select>
 
     <%= f.label :content %></br>
     <%= f.cktext_area :content, :class => 'col-md-12', :id => 'content-box' %></br>
 
-    <%= f.submit 'Submit question' %>
+    <%= f.submit 'Submit thread' %>
 <% end %>

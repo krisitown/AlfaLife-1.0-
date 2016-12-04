@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :plan_requests
   resources :videos
   resources :plans
+  
+ 
 
   get 'auth/:provider/callback' => 'sessions#social_auth'
 
@@ -40,6 +42,9 @@ Rails.application.routes.draw do
   get 'comments/:id/delete' => 'comments#delete'
   post 'questions/upvote' => 'comments#upvote'
   post 'questions/downvote' => 'comments#downvote'
+  
+  post 'discussions/change_category' => 'questions#change_category'
+  get 'discussions/change_category' => 'questions#index'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

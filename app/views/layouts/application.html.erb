@@ -20,7 +20,7 @@
       </div>
       <ul class="row navigation-bar">
         <li class="col-md-2 navbar-button"><%= link_to 'HOME', root_url, :class => 'navbar-link' %></li>
-        <li class="col-md-2 navbar-button"><%= link_to 'QUESTIONS', questions_url, :class => 'navbar-link'  %></li>
+        <li class="col-md-2 navbar-button"><%= link_to 'DISCUSSION', questions_url, :class => 'navbar-link'  %></li>
         <% if session[:current_user] == nil || Plan.where(:to_user => :current_user).where(:read => false).count == 0 %>
           <li class="col-md-2 navbar-button"><%= link_to 'PLANS', plans_path, :class => 'navbar-link'  %></li>
         <% elsif Plan.where(:to_user => :current_user).where(:read => false).count > 0 %>
