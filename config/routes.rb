@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
+  
+  get 'receive_payment_123875136516898791374817348' => 'plan_requests#new'
 
   post 'add_comment' => 'comments#create'
 

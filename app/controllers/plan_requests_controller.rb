@@ -2,13 +2,13 @@ class PlanRequestsController < ApplicationController
 
     def new
         log_in_check
-        payment_check
+        
         @plan_request = PlanRequest.new
     end
 
     def create
         log_in_check
-        payment_check
+        
         @plan_request = PlanRequest.new(plan_params)
         if @plan_request.save
             flash[:success] = "Successfully sent plan request."
