@@ -14,7 +14,7 @@ class PlansController < ApplicationController
             flash[:success] = "You've successfully sent the plan."
             redirect_to plan_requests_path
         else
-            flash[:danger] = "An error occured whilst trying to send the plan, please check the information you've inputted and try again"
+            flash[:danger] = "An error occured whilst trying to send the plan, please check the information you've inputted and try again."
             redirect_to plan_requests_path
         end
     end
@@ -33,8 +33,8 @@ class PlansController < ApplicationController
     private
         def log_in_check
             if session[:current_user] == nil
-                flash[:danger] = "Please log in to enter this page"
-                redirect_to root_url
+                flash[:danger] = "Please log in to enter this page."
+                redirect_to root_url + 'login'
             end
         end
 

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
             session[:current_user] = @user.id
             redirect_to root_url
         else 
-            flash[:danger] = "An error occured while trying to create new account"
+            flash[:danger] = "An error occured while trying to create new account."
             render 'new'
         end
     end

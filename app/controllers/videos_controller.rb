@@ -10,10 +10,10 @@ class VideosController < ApplicationController
         @video.video_id = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/.match(@video.link)[2]
         @video.thumbnail = "https://img.youtube.com/vi/" + @video.video_id + "/default.jpg"
         if @video.save
-            flash[:success] = "Video added successfully"
+            flash[:success] = "Video added successfully!"
             redirect_to videos_path
         else 
-            flash[:danger] = "An error occured, please check the information given and try again"
+            flash[:danger] = "An error occured, please check the information given and try again."
             redirect_to new_video_path
         end
     end

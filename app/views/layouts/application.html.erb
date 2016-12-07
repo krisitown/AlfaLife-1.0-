@@ -49,15 +49,29 @@
   
 
   <div class="col-md-12 main-box">
-    <div class="alert-success">
+    <% if flash[:success] != nil %>
+    <div class="alert-success flash">
       <%= flash[:success] %>
     </div>
-    <div class="alert-danger">
+    <% end %>
+    <% if flash[:danger] != nil %>
+    <div class="alert-danger flash" >
       <%= flash[:danger] %>
     </div>
+    <% end %>
     
-    <%= yield %>
-  
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1">
+    </div>
+    <a href="<%= plans_path %>" style="display:block;">
+     <%= image_tag "advert", :class => "col-xs-12 col-sm-12 col-md-10 col-lg-10 banner_ad" %>
+    </a>
+    </br>
+    <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1">
+    </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= yield %>
+    </div>
   </div>
 </div>
 </div>
@@ -65,7 +79,8 @@
 <footer class="col-xs-12 col-sm-12 col-md-12">
   <section class="footer-body">
     <small>
-      Contact us at: alfalife@gmail.com
+      Contact us at: truealfalife@gmail.com
+      <a href="https://www.facebook.com/pages/AlfaLife/1838549669721119">Facebook</a>
     </small>
   </section>
 </footer>

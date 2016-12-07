@@ -1,19 +1,20 @@
 <div class="col-sm-12 col-md-6">
-<h2> HAVE A QUESTION? WANT TO SHARE SOMETHING INTERESTING? THEN JUST GO AHEAD AND POST A START A NEW THREAD </h2>
+<h2> Have a question? Want to share something interesting? Then just go ahead and start a new thread </h2>
 <%= button_to 'START A THREAD', new_question_url, :class => "btn btn-primary", :method => 'get' %></li>
 </div>
 
 <div class="col-sm-12 col-md-6">
-<h2>THREADS:</h2>
+<h2>Threads:</h2>
 
 <h4>Category:</h4>
 <form action='<%= root_url %>discussions/change_category' method='post' %>
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <select id="category_select" name="category">
         <option value="all"> All </option>
-        <option value="fitness"> Fitness </option>
-        <option value="health"> Health </option>
-        <option value="food"> Food </option>
+        <option value="motivation"> Motivation </option>
+		<option value="cardio"> Cardio </option>
+		<option value="workout"> Working out </option>
+		<option value="general"> General/Other </option>
     </select>
 </form>
 

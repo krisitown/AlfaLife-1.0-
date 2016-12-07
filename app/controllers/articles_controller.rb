@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to @article
         else
-            flash[:danger] = "An error occured while trying to add the article"
+            flash[:danger] = "An error occured while trying to add the article."
             redirect_to new_article_url
         end
     end

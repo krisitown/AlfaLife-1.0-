@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
                 
             end
         else
-            flash[:danger] = "An error occured while trying to submit a comment"
+            flash[:danger] = "An error occured while trying to submit a comment."
             redirect_to(:back)
         end
     end
@@ -80,7 +80,7 @@ class CommentsController < ApplicationController
     private
         def login_check
             if session[:current_user] == nil
-                flash[:danger] = "Please log in to post a comment"
+                flash[:danger] = "Please log in to post a comment."
                 redirect_to root_url
             end
         end

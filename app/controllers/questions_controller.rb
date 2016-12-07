@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
             flash[:success] = "Question successfully added."
             redirect_to questions_url
         else
-            flash[:danger] = "An error occured whilst trying to add your question please try again"
+            flash[:danger] = "An error occured whilst trying to add your question please try again."
             render 'new'
         end
     end
