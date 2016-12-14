@@ -12,6 +12,7 @@ class PlanRequestsController < ApplicationController
         log_in_check
         payment_check
         @plan_request = PlanRequest.new(plan_params)
+        @plan_request.answered = false
         if @plan_request.save
             flash[:success] = "Successfully sent plan request."
             @user = User.find(session[:current_user])

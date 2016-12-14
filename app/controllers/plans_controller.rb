@@ -11,6 +11,9 @@ class PlansController < ApplicationController
         admin_check
         @plan = Plan.new(read: false, to_user: params[:to_user], title: params[:plan][:title], content: params[:plan][:content])
         if @plan.save
+            messages = Message.new(title: "You have received a plan!",
+                    content: "You can view the plan " + '<a href=' +  root_url + 'plans/' + @plan.id.to_s + '>here</a>',
+                    to_id: params[:to_user], read: false)
             flash[:success] = "You've successfully sent the plan."
             redirect_to plan_requests_path
         else
@@ -21,6 +24,10 @@ class PlansController < ApplicationController
 
     def show
         @plan = Plan.find(params[:id])
+        if @plan.to_user != session[:current_user]
+            flash[:danger] = "You do not have access to this part of the website. If you aren't logged in please do so."
+            redirect_to root_url
+        end
     end
 
     def index

@@ -8,6 +8,10 @@
         </p>
     </div>
 
+    <% if @comments.count == 0 %>
+        <h4>No one has commented yet, be the first to do so! </h4>
+    <% end %>
+
     <% @comments.each do |comment| %>
             <%= render comment %>
         <% end %>

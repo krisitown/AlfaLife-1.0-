@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @comments = Comment.where(:user_id => params[:id]).paginate(:page => params[:page], :per_page => 15)
     end
 
     private

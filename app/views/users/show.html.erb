@@ -1,3 +1,25 @@
 <h2><%= @user.name %></h2>
 
-to do: implement show
+<div class="user_comments">
+    <% if @comments.count = 0 %>
+        <h4> This user hasn't posted any comments. </h4>
+    <% end %>
+    
+    <% @comments.each do |comment| %>
+        <div class="comment">
+    <div id=comment<%= comment.id %>>
+    <% if session[:current_user] != nil %>
+        <button id='upvote<%= comment.id %>'>upvote</button>
+        <button id='downvote<%= comment.id %>'>downvote</button>
+    <% end %>
+    <%= link_to User.find(comment.user_id).name, root_url + 'users/' + comment.user_id.to_s %>
+    <%= comment.points.to_s + ' points' %>
+    <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: true) + " ago" %>
+    </br>
+    <div class="comment-content" >
+        <%= comment.content %>
+    </div>
+    </div>
+</div>
+    <% end %>
+</div>
