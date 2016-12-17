@@ -145,6 +145,15 @@ li a:hover {
     }
 }
 
+@media(max-width: 720){
+    .article_content{
+        font-size: 22px;
+    }
+    label {
+        font-size: 22px;
+    }
+}
+
 label {
     font-family: 'Patua One';
     font-size: 30px;
