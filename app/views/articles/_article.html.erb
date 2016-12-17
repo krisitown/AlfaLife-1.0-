@@ -7,6 +7,12 @@
         <div class="article_teaser_div col-md-6">
         <p>
             <% if article.content != nil %>
+                <% endOfPara = article.content[4..144].index('<') %>
+                <% if endOfPara == nil %>
+                    <%= article.content[4..140] + "..." %>
+                <% else %>
+                    <%= article.content[4..endOfPara] %>
+                <% end %>
                 <a href="<%= root_url + "articles/" + article.id.to_s %>">Read more</a>
             <% end %>
         </p>
