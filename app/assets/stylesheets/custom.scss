@@ -9,6 +9,10 @@
   box-sizing:         border-box;
 }
 
+.navbar {
+    margin-bottom: 0px;
+}
+
 .navbar > ul {
     background-color: black;
     list-style-type: none;
@@ -126,14 +130,36 @@ li a:hover {
     .article_content{
         font-size: 22px;    
     }
+    
+    label{
+        font-size: 26px;
+    }
 }
 
 @media(max-width: 1020px){
     .article_content{
         font-size: 32px;
     }
+    label {
+        font-size: 36px;
+    }
 }
 
+label {
+    font-family: 'Patua One';
+    font-size: 30px;
+}
+
+.wrapper {
+    margin-bottom: 15px;
+}
+
+footer {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    clear: both;
+}
 
 .footer-body {
     border-top: 1px solid darkslategray;
@@ -141,11 +167,21 @@ li a:hover {
     background: lightgray;
     font-size: 12px;
     line-height: 1.66667;
-    margin: 20px 0px;
-    padding: 0px 10px 21px;
+    margin-top: 15px;
+    padding: 15px;
     min-height: 44px;
     text-align: center;
 }
+
+.footer-body > small > a{
+    color: dimgray;
+}
+
+.footer-body > small > a:hover{
+    color: dimgray;
+}
+
+
 
 .main-box {
     border-left: 1px solid darkslategray;
@@ -222,11 +258,6 @@ p {
 .highlighted{
     background: gray;
     text-decoration: underline;
-}
-
-label {
-    font-family: 'Patua One';
-    font-size: 1.5em;
 }
 
 
